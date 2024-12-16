@@ -1,11 +1,12 @@
 import { DarkRoust, Expresso, HouseBlend } from "./berverage.menu";
 import { Beverage } from "./beverage";
 import { Mocha, Soy, Whip } from "./beverage.decorator";
+import { BeverageSize } from "./beverage.type";
 
 class BeverageOrderSystem {
-    private beverage: Beverage = new Expresso();
-    private beverage2: Beverage = new DarkRoust();
-    private beverage3: Beverage = new HouseBlend();
+    private beverage: Beverage = new Expresso(BeverageSize.TALL);
+    private beverage2: Beverage = new HouseBlend(BeverageSize.VENTI);
+    private beverage3: Beverage = new DarkRoust(BeverageSize.GRANDE);
 
     getOrderInfo(): void {
         console.log(`${this.beverage.getDescription()}: ${this.beverage.cost()} 원`);

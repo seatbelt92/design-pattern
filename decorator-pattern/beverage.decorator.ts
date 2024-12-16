@@ -1,4 +1,5 @@
 import { Beverage } from "./beverage";
+import { BeverageUtils } from "./beverage.utils";
 import { CondimentDecorator } from "./condiment.decorator";
 
 export class Mocha extends CondimentDecorator {
@@ -11,8 +12,13 @@ export class Mocha extends CondimentDecorator {
         return this.berverage.getDescription().concat(", ", "모카");
     }
 
+    private priceList = [1000, 1500, 2000];
+
     cost(): number {
-        return this.berverage.cost() + 1000;
+        return (
+            this.berverage.cost() +
+            BeverageUtils.getCostBySize(this.berverage.getSize(), this.priceList)
+        );
     }
 }
 
@@ -26,8 +32,13 @@ export class Whip extends CondimentDecorator {
         return this.berverage.getDescription().concat(", ", "휘핑");
     }
 
+    private priceList = [700, 1200, 1700];
+
     cost(): number {
-        return this.berverage.cost() + 700;
+        return (
+            this.berverage.cost() +
+            BeverageUtils.getCostBySize(this.berverage.getSize(), this.priceList)
+        );
     }
 }
 
@@ -41,7 +52,12 @@ export class Soy extends CondimentDecorator {
         return this.berverage.getDescription().concat(", ", "소이");
     }
 
+    private priceList = [500, 1000, 1500];
+
     cost(): number {
-        return this.berverage.cost() + 500;
+        return (
+            this.berverage.cost() +
+            BeverageUtils.getCostBySize(this.berverage.getSize(), this.priceList)
+        );
     }
 }
