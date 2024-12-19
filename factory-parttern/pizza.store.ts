@@ -1,8 +1,11 @@
 import { Pizza } from "./pizza";
+import { SimplePizzaFactory } from "./simple.pizza.factory";
 
-class PizzaStore {
-    orderPizza(): Pizza {
-        const pizza: Pizza = new Pizza();
+export class PizzaStore {
+    constructor(private factory: SimplePizzaFactory) {}
+
+    orderPizza(type: string): Pizza {
+        const pizza: Pizza = this.factory.createPizza(type);
 
         pizza.prepare();
         pizza.bake();
@@ -12,5 +15,3 @@ class PizzaStore {
         return pizza;
     }
 }
-
-new PizzaStore().orderPizza();

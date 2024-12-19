@@ -1,4 +1,6 @@
-export class Pizza {
+export abstract class Pizza {
+    abstract name: string;
+
     prepare(): void {
         console.log("피자 준비");
     }
