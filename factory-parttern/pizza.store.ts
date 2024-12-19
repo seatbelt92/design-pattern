@@ -1,11 +1,8 @@
 import { Pizza } from "./pizza";
-import { SimplePizzaFactory } from "./simple.pizza.factory";
 
-export class PizzaStore {
-    constructor(private factory: SimplePizzaFactory) {}
-
+export abstract class PizzaStore {
     orderPizza(type: string): Pizza {
-        const pizza: Pizza = this.factory.createPizza(type);
+        const pizza = this.createPizza(type);
 
         pizza.prepare();
         pizza.bake();
@@ -14,4 +11,6 @@ export class PizzaStore {
 
         return pizza;
     }
+
+    protected abstract createPizza(type: string): Pizza;
 }
