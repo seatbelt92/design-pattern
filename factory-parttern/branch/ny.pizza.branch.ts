@@ -1,24 +1,30 @@
 import { Pizza } from "../pizza";
-import {
-    NYStyleCheesePizza,
-    NYStyleClamPizza,
-    NYStylePepperoniPizza,
-    NYStyleVeggiePizza,
-} from "../menu/ny.pizza.menu";
-import { PizzaStore } from "../pizza.store";
+import { PizzaStore } from "./pizza.store";
+import { PizzaIngredientFactory } from "../ingredient/pizza.ingredient.factory";
+import { NYPizzaIngredientFactory } from "../ingredient/ny.pizza.ingredient.factory";
+import { CheesePizza, ClamPizza, PepperoniPizza, VeggiePizza } from "../pizza.menu";
 
 export class NYPizzaBranch extends PizzaStore {
-    createPizza(type: string): Pizza {
+    protected createPizza(type: string): Pizza {
+        let pizza: Pizza;
+        const ingredientFactory: PizzaIngredientFactory = new NYPizzaIngredientFactory();
+
         if (type === "cheese") {
-            return new NYStyleCheesePizza();
+            pizza = new CheesePizza(ingredientFactory);
+            pizza.setName("뉴욕 치즈 피자");
         } else if (type === "pepperoni") {
-            return new NYStylePepperoniPizza();
+            pizza = new PepperoniPizza(ingredientFactory);
+            pizza.setName("뉴욕 페퍼로니 피자");
         } else if (type === "clam") {
-            return new NYStyleClamPizza();
+            pizza = new ClamPizza(ingredientFactory);
+            pizza.setName("뉴욕 조개 피자");
         } else if (type === "veggie") {
-            return new NYStyleVeggiePizza();
+            pizza = new VeggiePizza(ingredientFactory);
+            pizza.setName("뉴욕 야채 피자");
         } else {
             throw new Error("등록되지 않은 메뉴입니다.");
         }
+
+        return pizza;
     }
 }

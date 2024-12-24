@@ -1,15 +1,22 @@
+import {
+    Cheese,
+    Clams,
+    Dough,
+    Pepperoni,
+    Sauce,
+    Veggies,
+} from "./ingredient/pizza.ingredient.type";
+
 export abstract class Pizza {
     name: string;
-    dough: string;
-    sauce: string;
-    toppings: string[];
+    dough: Dough;
+    sauce: Sauce;
+    veggies: Veggies[];
+    cheese: Cheese;
+    pepperroni: Pepperoni;
+    clams: Clams;
 
-    prepare(): void {
-        console.log(`준비 중: ${this.name}`);
-        console.log(`${this.dough}를 돌리는 중`);
-        console.log(`${this.sauce}를 뿌리는 중`);
-        console.log(`토핑을 올리는 중: ${this.toppings.join(", ")}`);
-    }
+    prepare(): void {}
 
     bake(): void {
         console.log("오븐에서 굽기");
@@ -23,7 +30,11 @@ export abstract class Pizza {
         console.log("상자에 담기");
     }
 
-    getName() {
+    setName(name: string): void {
+        this.name = name;
+    }
+
+    getName(): string {
         return this.name;
     }
 }
