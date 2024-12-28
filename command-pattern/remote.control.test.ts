@@ -28,16 +28,15 @@ class RemoteControlTest {
         this.remoteControl.setCommand(2, this.garageLightOn, this.garageLightOff);
         this.remoteControl.setCommand(3, this.garageDoorOpen, this.garageDoorClose);
 
-        console.log(this.remoteControl.showButtons());
-
         this.remoteControl.onButtonWasPushed(0);
         this.remoteControl.offButtonWasPushed(0);
-        this.remoteControl.onButtonWasPushed(1);
-        this.remoteControl.offButtonWasPushed(1);
-        this.remoteControl.onButtonWasPushed(2);
-        this.remoteControl.offButtonWasPushed(2);
-        this.remoteControl.onButtonWasPushed(3);
-        this.remoteControl.offButtonWasPushed(3);
+        console.log(this.remoteControl.showButtons());
+        this.remoteControl.undoButtonWasPushed();
+        console.log("-- next --\n");
+        this.remoteControl.offButtonWasPushed(0);
+        this.remoteControl.onButtonWasPushed(0);
+        console.log(this.remoteControl.showButtons());
+        this.remoteControl.undoButtonWasPushed();
     }
 }
 

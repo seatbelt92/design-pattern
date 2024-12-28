@@ -7,4 +7,8 @@ export class LightOffCommand implements Command {
     execute(): void {
         this.light.off();
     }
+
+    undo(): void {
+        this.light.on();
+    }
 }
