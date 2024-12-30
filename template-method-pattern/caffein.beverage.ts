@@ -1,9 +1,9 @@
 export abstract class CaffeinBeverage {
-    readonly prepareRecipe = (): void => {
+    readonly prepareRecipe = async (): Promise<void> => {
         this.boilWater();
         this.brew();
         this.pourInCup();
-        this.addCondiments();
+        if (await this.customerWantsCondiments()) this.addCondiments();
     };
 
     abstract brew(): void;
@@ -16,5 +16,9 @@ export abstract class CaffeinBeverage {
 
     pourInCup(): void {
         console.log("컵에 따르는 중");
+    }
+
+    async customerWantsCondiments(): Promise<boolean> {
+        return true;
     }
 }
