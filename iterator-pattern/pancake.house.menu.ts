@@ -1,8 +1,9 @@
 import { Iterator } from "./iterator";
+import { Menu } from "./menu";
 import { MenuItem } from "./menu.item";
 import { PancakeHouseMenuIterator } from "./pancake.house.menu.iterator";
 
-export class PancakeHouseMenu {
+export class PancakeHouseMenu implements Menu {
     private menuItems: MenuItem[];
     constructor() {
         this.menuItems = [];

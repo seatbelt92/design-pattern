@@ -1,8 +1,9 @@
 import { DinnerMenuIterator } from "./dinner.menu.iterator";
 import { Iterator } from "./iterator";
+import { Menu } from "./menu";
 import { MenuItem } from "./menu.item";
 
-export class DinnerMenu {
+export class DinnerMenu implements Menu {
     private menuItems: Set<MenuItem>;
 
     constructor() {
