@@ -1,8 +1,9 @@
+import { Iterator } from "./iterator";
 import { MenuItem } from "./menu.item";
+import { PancakeHouseMenuIterator } from "./pancake.house.menu.iterator";
 
 export class PancakeHouseMenu {
     private menuItems: MenuItem[];
-
     constructor() {
         this.menuItems = [];
         this.addItem("K&B 팬케이크 세트", "스크램블 에그와 토스트가 곁들여진 팬케이크", true, 5000);
@@ -28,7 +29,7 @@ export class PancakeHouseMenu {
         this.menuItems.push(new MenuItem(name, description, vegetarian, price));
     }
 
-    getMenuItems(): MenuItem[] {
-        return this.menuItems;
+    createIterator(): Iterator {
+        return new PancakeHouseMenuIterator(this.menuItems);
     }
 }

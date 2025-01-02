@@ -1,5 +1,5 @@
 import { DinnerMenu } from "./dinner.menu";
-import { MenuItem } from "./menu.item";
+import { Iterator } from "./iterator";
 import { PancakeHouseMenu } from "./pancake.house.menu";
 
 export class Waitress {
@@ -9,26 +9,28 @@ export class Waitress {
     ) {}
 
     printMenu(): void {
-        const pancakeHouseMenuItems = this.pancakeHouseMenu.getMenuItems();
-        console.log(pancakeHouseMenuItems);
+        this.printMenuItems(this.pancakeHouseMenu.createIterator());
+        this.printMenuItems(this.dinnerMenu.createIterator());
+    }
 
-        const dinnerMenuItems = this.dinnerMenu.getMenuItems();
-        console.log(dinnerMenuItems);
+    private printMenuItems(iterator: Iterator): void {
+        while (iterator.hasNext()) {
+            console.log(iterator.next());
+        }
     }
 
     printVegetarian(): void {
-        const vegetarianMenu: MenuItem[] = [];
-        const pancakeHouseMenuItems = this.pancakeHouseMenu.getMenuItems();
-        const dinnerMenuItems = this.dinnerMenu.getMenuItems();
+        const pancakeHouseMenuItems = this.pancakeHouseMenu.createIterator();
+        const dinnerMenuItems = this.dinnerMenu.createIterator();
 
-        for (const item of pancakeHouseMenuItems) {
-            if (item.getVegetarian() === true) vegetarianMenu.push(item);
+        this.printVegetarianMenuItems(pancakeHouseMenuItems);
+        this.printVegetarianMenuItems(dinnerMenuItems);
+    }
+
+    private printVegetarianMenuItems(iterator: Iterator): void {
+        while (iterator.hasNext()) {
+            const iteratorNext = iterator.next();
+            if (iteratorNext.getVegetarian()) console.log(iteratorNext);
         }
-
-        for (const item of dinnerMenuItems) {
-            if (item.getVegetarian() === true) vegetarianMenu.push(item);
-        }
-
-        console.log(vegetarianMenu);
     }
 }

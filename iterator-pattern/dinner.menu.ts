@@ -1,3 +1,5 @@
+import { DinnerMenuIterator } from "./dinner.menu.iterator";
+import { Iterator } from "./iterator";
 import { MenuItem } from "./menu.item";
 
 export class DinnerMenu {
@@ -28,7 +30,7 @@ export class DinnerMenu {
         this.menuItems.add(new MenuItem(name, description, vegetarian, price));
     }
 
-    getMenuItems(): Set<MenuItem> {
-        return this.menuItems;
+    createIterator(): Iterator {
+        return new DinnerMenuIterator(this.menuItems);
     }
 }
